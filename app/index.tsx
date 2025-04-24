@@ -7,8 +7,10 @@ import {
 import React from "react";
 import { Image } from "expo-image";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { useRouter } from "expo-router";
 
 const Index = () => {
+	const router = useRouter();
 	return (
 		<SafeAreaView style={styles.container}>
 			<View style={styles.content}>
@@ -23,10 +25,16 @@ const Index = () => {
 				<Text style={styles.subtitle}>
 					Your one-stop shop for everything you need.
 				</Text>
-				<TouchableOpacity style={styles.button}>
+				<TouchableOpacity
+					style={styles.button}
+					onPress={() => router.navigate("/signin")}
+				>
 					<Text style={{ color: "white" }}>Sign-In</Text>
 				</TouchableOpacity>
-				<TouchableOpacity style={styles.button}>
+				<TouchableOpacity
+					style={styles.button}
+					onPress={() => router.navigate("/signup")}
+				>
 					<Text style={{ color: "white" }}>Sign-Up</Text>
 				</TouchableOpacity>
 			</View>

@@ -1,76 +1,122 @@
-import { View, Text, TextInput } from "react-native";
-// import React from "react";
+import {
+	View,
+	Text,
+	TextInput,
+	TouchableOpacity,
+	KeyboardAvoidingView,
+	Platform,
+	StyleSheet,
+	ScrollView,
+	TouchableWithoutFeedback,
+	Keyboard,
+} from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { StyleSheet, Platform } from "react-native";
 import { Image } from "expo-image";
-// import { Image } from "expo-image";
-const signin = () => {
+import { useRouter } from "expo-router";
+
+const SignIn = () => {
+	const router = useRouter();
+
 	return (
-		<SafeAreaView style={{ height: "100%", padding: 10 }}>
-			<View>
-				<Text style={styles.titleContainer}>SignIn</Text>
-				<Image
-					style={styles.image}
-					source="https://img.freepik.com/free-photo/computer-security-with-login-password-padlock_107791-16191.jpg?ga=GA1.1.943142825.1745488067&semt=ais_hybrid&w=740"
-					// placeholder={{ blurhash }}
-					contentFit="cover"
-					transition={1000}
-				/>
-			</View>
-			<View style={styles.inputbox}>
-				<Text style={styles.text}>Email</Text>
-				<TextInput
-					placeholder="Email"
-					style={styles.input}
-				/>
-			</View>
-			<View style={styles.inputbox}>
-				<Text style={styles.text}>Password</Text>
-				<TextInput
-					placeholder="Password"
-					style={styles.input}
-				/>
-			</View>
+		<SafeAreaView
+			style={{ flex: 1, backgroundColor: "black" }}
+		>
+			<KeyboardAvoidingView
+				behavior={
+					Platform.OS === "ios" ? "padding" : "height"
+				}
+				keyboardVerticalOffset={40}
+				style={{ flex: 1 }}
+			>
+				<TouchableWithoutFeedback
+					onPress={Keyboard.dismiss}
+				>
+					<ScrollView
+						contentContainerStyle={{ flexGrow: 1 }}
+					>
+						<View style={styles.secondContainer}>
+							<View style={{ width: "100%" }}>
+								<Text style={styles.titleContainer}>
+									SignIn
+								</Text>
+								<View style={styles.inputbox}>
+									<Text style={styles.text}>Email:</Text>
+									<TextInput
+										placeholder="Email"
+										style={styles.input}
+									/>
+								</View>
+								<View style={styles.inputbox}>
+									<Text style={styles.text}>Password:</Text>
+									<TextInput
+										placeholder="Password"
+										style={styles.input}
+										secureTextEntry
+									/>
+								</View>
+							</View>
+							<TouchableOpacity
+								style={styles.button}
+								onPress={() => router.navigate("/signup")}
+							>
+								<Text style={{ color: "white" }}>
+									Sign-In
+								</Text>
+							</TouchableOpacity>
+						</View>
+					</ScrollView>
+				</TouchableWithoutFeedback>
+			</KeyboardAvoidingView>
 		</SafeAreaView>
 	);
 };
+
 const styles = StyleSheet.create({
 	image: {
 		width: "80%",
 		height: 220,
-		margin: "auto",
+		alignSelf: "center",
 	},
 	titleContainer: {
-		display: "flex",
-		flexDirection: "row",
 		fontSize: 30,
 		color: "white",
+		textAlign: "center",
+		marginVertical: 2,
+		marginBottom: 20,
+	},
+	secondContainer: {
+		flex: 1,
 		alignItems: "center",
-		justifyContent: "center",
-	},
-	stepContainer: {
-		gap: 8,
-		marginBottom: 8,
-	},
-	reactLogo: {
-		height: 178,
-		width: 290,
-		bottom: 0,
-		left: 0,
-		position: "absolute",
+		// justifyContent: "center",
+		justifyContent: "space-around",
+		padding: 10,
 	},
 	text: {
 		color: "white",
+		marginBottom: 10,
 	},
 	input: {
 		backgroundColor: "white",
 		width: "80%",
 		borderRadius: 10,
+		paddingHorizontal: 10,
+		paddingVertical: 10,
+		marginBottom: 30,
 	},
 	inputbox: {
-		display: "flex",
 		width: "100%",
+		alignItems: "center",
+		borderColor: "black",
+	},
+	button: {
+		alignItems: "center",
+		backgroundColor: "blue",
+		padding: 10,
+		marginVertical: 10,
+		width: "35%",
+		borderRadius: 5,
+		marginTop: 20,
 	},
 });
 
-export default signin;
+export default SignIn;
