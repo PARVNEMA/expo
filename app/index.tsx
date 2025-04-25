@@ -8,6 +8,7 @@ import React from "react";
 import { Image } from "expo-image";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useRouter } from "expo-router";
+import Button from "@/components/Button";
 
 const Index = () => {
 	const router = useRouter();
@@ -25,18 +26,15 @@ const Index = () => {
 				<Text style={styles.subtitle}>
 					Your one-stop shop for everything you need.
 				</Text>
-				<TouchableOpacity
-					style={styles.button}
+
+				<Button
 					onPress={() => router.navigate("/signin")}
-				>
-					<Text style={{ color: "white" }}>Sign-In</Text>
-				</TouchableOpacity>
-				<TouchableOpacity
-					style={styles.button}
+					title="Sign-In"
+				/>
+				<Button
 					onPress={() => router.navigate("/signup")}
-				>
-					<Text style={{ color: "white" }}>Sign-Up</Text>
-				</TouchableOpacity>
+					title="Sign-Up"
+				/>
 			</View>
 		</SafeAreaView>
 	);

@@ -40,7 +40,7 @@ const SignIn = () => {
 
 									<CustomeInput
 										placeholder="Email"
-										type="email-address"
+										keyboardType="email-address"
 									/>
 								</View>
 								<View style={styles.inputbox}>
@@ -48,7 +48,7 @@ const SignIn = () => {
 
 									<CustomeInput
 										placeholder="Password"
-										type="visible-password"
+										keyboardType="visible-password"
 									/>
 								</View>
 							</View>
@@ -64,7 +64,7 @@ const SignIn = () => {
 							>
 								<Button
 									title="Sign-In"
-									onpress={() =>
+									onPress={() =>
 										router.navigate("/(tabs)/home")
 									}
 								/>

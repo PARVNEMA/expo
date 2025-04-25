@@ -42,14 +42,19 @@ const SignUp = () => {
 											Username:
 										</Text>
 
-										<CustomeInput placeholder="Username" />
+										<CustomeInput
+											placeholder="Username"
+											keyboardType="default"
+											autoComplete="username"
+										/>
 									</View>
 									<View style={styles.inputbox}>
 										<Text style={styles.text}>Email:</Text>
 
 										<CustomeInput
 											placeholder="Email"
-											type="email-address"
+											keyboardType="email-address"
+											autoComplete="email"
 										/>
 									</View>
 									<View style={styles.inputbox}>
@@ -57,7 +62,10 @@ const SignUp = () => {
 											Password:
 										</Text>
 
-										<CustomeInput placeholder="Password" />
+										<CustomeInput
+											placeholder="Password"
+											keyboardType="default"
+										/>
 									</View>
 								</View>
 
@@ -73,7 +81,7 @@ const SignUp = () => {
 								>
 									<Button
 										title="Sign-Up"
-										onpress={() =>
+										onPress={() =>
 											router.navigate("/signup")
 										}
 									/>

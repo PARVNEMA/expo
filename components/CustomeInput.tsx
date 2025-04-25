@@ -3,20 +3,20 @@ import {
 	Text,
 	StyleSheet,
 	TextInput,
+	TextInputProps,
 } from "react-native";
 import React from "react";
 
 const CustomeInput = ({
 	placeholder,
-	type = "text",
+
 	...props
-}: any) => {
+}: TextInputProps) => {
 	return (
 		<View style={styles.inputbox}>
 			<TextInput
 				placeholder={placeholder}
 				style={styles.input}
-				keyboardType={type}
 				{...props}
 			/>
 		</View>
