@@ -12,68 +12,87 @@ import {
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Image } from "expo-image";
-import { useRouter } from "expo-router";
+import { Link, useRouter } from "expo-router";
+import Button from "@/components/Button";
+import CustomeInput from "@/components/CustomeInput";
+import KeyboardAvoiding from "@/components/KeyboardAvoiding";
 
 const SignUp = () => {
 	const router = useRouter();
 
 	return (
 		<SafeAreaView
-			style={{ flex: 1, backgroundColor: "black" }}
+			style={{ flex: 1, backgroundColor: "white" }}
 		>
-			<KeyboardAvoidingView
-				behavior={
-					Platform.OS === "ios" ? "padding" : "height"
-				}
-				style={{ flex: 1 }}
-				keyboardVerticalOffset={70}
-			>
-				<TouchableWithoutFeedback
-					onPress={Keyboard.dismiss}
-				>
-					<ScrollView
-						contentContainerStyle={{ flexGrow: 1 }}
+			<>
+				<KeyboardAvoiding offset={80}>
+					<TouchableWithoutFeedback
+						onPress={Keyboard.dismiss}
 					>
-						<View style={styles.secondContainer}>
-							<View style={{ width: "100%" }}>
-								<Text style={styles.titleContainer}>
-									SignUp
-								</Text>
-								<View style={styles.inputbox}>
-									<Text style={styles.text}>Username:</Text>
-									<TextInput
-										placeholder="Username"
-										style={styles.input}
-									/>
+						<ScrollView
+							contentContainerStyle={{ flexGrow: 1 }}
+						>
+							<View style={styles.secondContainer}>
+								<View style={{ width: "100%" }}>
+									<Text style={styles.titleContainer}>
+										SignUp
+									</Text>
+									<View style={styles.inputbox}>
+										<Text style={styles.text}>
+											Username:
+										</Text>
+
+										<CustomeInput placeholder="Username" />
+									</View>
+									<View style={styles.inputbox}>
+										<Text style={styles.text}>Email:</Text>
+
+										<CustomeInput
+											placeholder="Email"
+											type="email-address"
+										/>
+									</View>
+									<View style={styles.inputbox}>
+										<Text style={styles.text}>
+											Password:
+										</Text>
+
+										<CustomeInput placeholder="Password" />
+									</View>
 								</View>
-								<View style={styles.inputbox}>
-									<Text style={styles.text}>Email:</Text>
-									<TextInput
-										placeholder="Email"
-										style={styles.input}
+
+								<View
+									style={{
+										width: "100%",
+										flex: 1,
+										justifyContent: "flex-end",
+										alignItems: "center",
+
+										paddingBottom: 40,
+									}}
+								>
+									<Button
+										title="Sign-Up"
+										onpress={() =>
+											router.navigate("/signup")
+										}
 									/>
-								</View>
-								<View style={styles.inputbox}>
-									<Text style={styles.text}>Password:</Text>
-									<TextInput
-										placeholder="Password"
-										style={styles.input}
-										secureTextEntry
-									/>
+
+									<Text>
+										Already Have an Account{" "}
+										<Link
+											href={"/(auth)/signin"}
+											style={{ color: "blue" }}
+										>
+											SignIn
+										</Link>
+									</Text>
 								</View>
 							</View>
-							<TouchableOpacity
-								style={styles.button}
-								onPress={() => router.navigate("/signup")}
-							>
-								<Text style={{ color: "white" }}>
-									Sign-Up
-								</Text>
-							</TouchableOpacity>
-						</View>
-					</ScrollView>
-				</TouchableWithoutFeedback>
-			</KeyboardAvoidingView>
+						</ScrollView>
+					</TouchableWithoutFeedback>
+				</KeyboardAvoiding>
+			</>
 		</SafeAreaView>
 	);
 };
@@ -81,7 +100,7 @@ const SignUp = () => {
 const styles = StyleSheet.create({
 	titleContainer: {
 		fontSize: 30,
-		color: "white",
+		color: "black",
 		textAlign: "center",
 		marginVertical: 8,
 	},
@@ -92,8 +111,9 @@ const styles = StyleSheet.create({
 		padding: 10,
 	},
 	text: {
-		color: "white",
+		color: "black",
 		marginBottom: 4,
+		fontWeight: "bold",
 	},
 	input: {
 		backgroundColor: "white",

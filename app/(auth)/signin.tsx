@@ -12,22 +12,18 @@ import {
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Image } from "expo-image";
-import { useRouter } from "expo-router";
-
+import { Link, useRouter } from "expo-router";
+import Button from "@/components/Button";
+import CustomeInput from "@/components/CustomeInput";
+import KeyboardAvoiding from "@/components/KeyboardAvoiding";
 const SignIn = () => {
 	const router = useRouter();
 
 	return (
 		<SafeAreaView
-			style={{ flex: 1, backgroundColor: "black" }}
+			style={{ flex: 1, backgroundColor: "white" }}
 		>
-			<KeyboardAvoidingView
-				behavior={
-					Platform.OS === "ios" ? "padding" : "height"
-				}
-				keyboardVerticalOffset={40}
-				style={{ flex: 1 }}
-			>
+			<KeyboardAvoiding>
 				<TouchableWithoutFeedback
 					onPress={Keyboard.dismiss}
 				>
@@ -41,32 +37,52 @@ const SignIn = () => {
 								</Text>
 								<View style={styles.inputbox}>
 									<Text style={styles.text}>Email:</Text>
-									<TextInput
+
+									<CustomeInput
 										placeholder="Email"
-										style={styles.input}
+										type="email-address"
 									/>
 								</View>
 								<View style={styles.inputbox}>
 									<Text style={styles.text}>Password:</Text>
-									<TextInput
+
+									<CustomeInput
 										placeholder="Password"
-										style={styles.input}
-										secureTextEntry
+										type="visible-password"
 									/>
 								</View>
 							</View>
-							<TouchableOpacity
-								style={styles.button}
-								onPress={() => router.navigate("/signup")}
+							<View
+								style={{
+									width: "100%",
+									flex: 1,
+									justifyContent: "flex-end",
+									alignItems: "center",
+
+									paddingBottom: 40,
+								}}
 							>
-								<Text style={{ color: "white" }}>
-									Sign-In
+								<Button
+									title="Sign-In"
+									onpress={() =>
+										router.navigate("/(tabs)/home")
+									}
+								/>
+
+								<Text>
+									Don't Have an Account{" "}
+									<Link
+										href={"/(auth)/signup"}
+										style={{ color: "blue" }}
+									>
+										SignUp
+									</Link>
 								</Text>
-							</TouchableOpacity>
+							</View>
 						</View>
 					</ScrollView>
 				</TouchableWithoutFeedback>
-			</KeyboardAvoidingView>
+			</KeyboardAvoiding>
 		</SafeAreaView>
 	);
 };
@@ -79,7 +95,7 @@ const styles = StyleSheet.create({
 	},
 	titleContainer: {
 		fontSize: 30,
-		color: "white",
+		color: "black",
 		textAlign: "center",
 		marginVertical: 2,
 		marginBottom: 20,
@@ -92,17 +108,11 @@ const styles = StyleSheet.create({
 		padding: 10,
 	},
 	text: {
-		color: "white",
+		color: "black",
 		marginBottom: 10,
+		fontWeight: "bold",
 	},
-	input: {
-		backgroundColor: "white",
-		width: "80%",
-		borderRadius: 10,
-		paddingHorizontal: 10,
-		paddingVertical: 10,
-		marginBottom: 30,
-	},
+
 	inputbox: {
 		width: "100%",
 		alignItems: "center",
